@@ -6,36 +6,47 @@
   <title>TayGames Beta</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;700&display=swap');
-    :root {
+        :root {
       --primary: #8C52FF;
       --secondary: #00BA7C;
-      --background: #14161A;
-      --text: #E0E0E0;
+      --accent: #FFD700;
+      --background: #1A1A2E;
+      --card-bg: #2C2C4A;
+      --text-color: #E0E0E0;
       --text-muted: #A0A0A0;
-      --card: #1E2127;
       --border-color: rgba(255, 255, 255, 0.1);
-      --highlight-gradient: linear-gradient(90deg, #8C52FF, #4D19B3);
+      --shadow-color: rgba(0, 0, 0, 0.4);
+      --gradient-hero: linear-gradient(90deg, #8C52FF, #4D19B3);
+      --live-indicator: #E63946;
     }
     [data-theme="light"] {
       --primary: #007AFF;
       --secondary: #FFD700;
+      --accent: #FF6B6B;
       --background: #F0F2F5;
-      --text: #333333;
+      --card-bg: #FFFFFF;
+      --text-color: #333333;
       --text-muted: #666666;
-      --card: #FFFFFF;
       --border-color: rgba(0, 0, 0, 0.08);
-      --highlight-gradient: linear-gradient(90deg, #007AFF, #00B3FF);
+      --shadow-color: rgba(0, 0, 0, 0.15);
+      --gradient-hero: linear-gradient(90deg, #007AFF, #00B3FF);
+      --live-indicator: #DC3545;
     }
+
     [data-theme="gaming"] {
-      --primary: #E63946;
-      --secondary: #58D68D;
-      --background: #0A0B0C;
-      --text: #c0c0c0;
-      --text-muted: #888888;
-      --card: #15171B;
-      --border-color: rgba(255, 255, 255, 0.05);
-      --highlight-gradient: linear-gradient(90deg, #E63946, #B32F38);
+      --primary: #7289da;
+      --secondary: #43b581;
+      --accent: #f04747;
+      --background: #2f3136;
+      --card-bg: #36393f;
+      --text-color: #dcddde;
+      --text-muted: #99aab5;
+      --border-color: rgba(114, 137, 218, 0.2);
+      --shadow-color: rgba(0, 0, 0, 0.4);
+      --gradient-hero: linear-gradient(90deg, #7289da, #677bc4);
+      --live-indicator: #f04747;
     }
+
     [data-theme="future"] {
       --primary: #00F0FF;
       --secondary: #FF00FF;
@@ -50,14 +61,14 @@
       margin: 0;
       font-family: 'Roboto', sans-serif;
       background-color: var(--background);
-      color: var(--text);
+      color: var(--text-color);
       transition: background 0.4s ease, color 0.4s ease;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
     header {
-      background: var(--card);
+      background: var(--card-bg);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -96,7 +107,7 @@
       transition: color 0.3s ease, transform 0.3s ease;
     }
     nav a:hover {
-      color: var(--text);
+      color: var(--text-color);
       transform: translateY(-2px);
     }
     nav a::after {
@@ -124,12 +135,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: var(--card);
+      background: var(--card-bg);
       padding: 8px 15px;
       border-radius: 20px;
       border: 1px solid var(--border-color);
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-      color: var(--text);
+      color: var(--text-color);
       font-weight: 600;
       font-size: 0.95em;
     }
@@ -186,8 +197,8 @@
       border: 1px solid var(--border-color);
       font-size: 0.95em;
       width: 140px;
-      background-color: var(--card);
-      color: var(--text);
+      background-color: var(--card-bg);
+      color: var(--text-color);
       transition: all 0.3s ease;
     }
     #nickname-input:focus, #referral-code-input:focus {
@@ -196,7 +207,7 @@
       box-shadow: 0 0 0 2px rgba(140, 82, 255, 0.3);
     }
     #nickname-input.error {
-      border: 2px solid #E63946;
+      border: 2px solid var(--accent);
       box-shadow: 0 0 8px rgba(230, 57, 70, 0.5);
     }
     #save-nickname, #clear-progress, #join-discord {
@@ -212,13 +223,17 @@
       align-items: center;
       gap: 8px;
     }
-    #save-nickname:hover {
+    #save-nickname {
       background: var(--secondary);
-      box-shadow: 0 2px 10px rgba(0, 186, 124, 0.4);
+      box-shadow: 0 2px 8px rgba(0, 186, 124, 0.3);
+    }
+    #save-nickname:hover {
+      background: var(--primary);
+      box-shadow: 0 2px 10px rgba(140, 82, 255, 0.4);
       transform: translateY(-2px);
     }
     #clear-progress {
-      background: #E63946;
+      background: var(--accent);
       box-shadow: 0 2px 8px rgba(230, 57, 70, 0.3);
     }
     #clear-progress:hover {
@@ -243,7 +258,7 @@
     .hero {
       text-align: center;
       padding: 120px 20px;
-      background: var(--highlight-gradient);
+      background: var(--gradient-hero);
       color: white;
       position: relative;
       overflow: hidden;
@@ -292,7 +307,7 @@
     }
     .feature,
     .game-card {
-      background: var(--card);
+      background: var(--card-bg);
       padding: 30px;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
@@ -423,7 +438,7 @@
       position: absolute;
       top: 20px;
       left: 20px;
-      background: #E63946;
+      background: var(--accent);
       color: white;
       padding: 12px 20px;
       border: none;
@@ -442,7 +457,7 @@
     footer {
       text-align: center;
       padding: 30px;
-      background: var(--card);
+      background: var(--card-bg);
       color: var(--text-muted);
       margin-top: 60px;
       border-top: 1px solid var(--border-color);
@@ -452,7 +467,7 @@
       max-width: 900px;
       margin: 60px auto;
       text-align: center;
-      background: var(--card);
+      background: var(--card-bg);
       border-radius: 18px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       border: 1px solid var(--border-color);
@@ -496,9 +511,10 @@
     .modal.show {
       opacity: 1;
       pointer-events: auto;
+      display: flex;
     }
     .modal-content {
-      background-color: var(--card);
+      background-color: var(--card-bg);
       padding: 40px;
       border-radius: 18px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.6);
@@ -521,7 +537,7 @@
     .modal-content p {
       font-size: 1.15em;
       line-height: 1.7;
-      color: var(--text);
+      color: var(--text-color);
     }
     .modal-buttons {
       margin-top: 30px;
@@ -549,7 +565,7 @@
       box-shadow: 0 1px 5px rgba(0,0,0,0.3);
     }
     .modal-buttons .confirm-btn {
-      background-color: #E63946;
+      background-color: var(--accent);
       color: white;
     }
     .modal-buttons .confirm-btn:hover {
@@ -557,7 +573,7 @@
     }
     .modal-buttons .cancel-btn {
       background-color: var(--text-muted);
-      color: var(--card);
+      color: var(--card-bg);
     }
     .modal-buttons .cancel-btn:hover {
       background-color: #808080;
@@ -598,7 +614,7 @@
       overflow: hidden;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       border: 1px solid var(--border-color);
-      background: var(--card);
+      background: var(--card-bg);
     }
     #sidebar-builder {
       width: 300px;
@@ -614,7 +630,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: var(--card);
+      background: var(--card-bg);
       padding: 15px;
     }
     #gameCanvasBuilder {
@@ -955,9 +971,9 @@
       <h3 id="promptModalTitle"></h3>
       <p id="promptModalMessage"></p>
       <label for="promptTitleInput" id="promptInput1Label"></label>
-      <input type="text" id="promptTitleInput" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: var(--background); color: var(--text);">
+      <input type="text" id="promptTitleInput" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: var(--background); color: var(--text-color);">
       <label for="promptDescriptionInput" id="promptInput2Label"></label>
-      <textarea id="promptDescriptionInput" rows="4" style="width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; background-color: var(--background); color: var(--text);"></textarea>
+      <textarea id="promptDescriptionInput" rows="4" style="width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; background-color: var(--background); color: var(--text-color);"></textarea>
       <div class="modal-buttons">
         <button id="promptSaveBtn" class="ok-btn">Save</button>
         <button id="promptCancelBtn" class="cancel-btn">Cancel</button>
@@ -969,14 +985,12 @@
   </footer>
   <script>
     console.log("Main script: Starting parsing.");
-
     if (!localStorage.getItem("tokens")) localStorage.setItem("tokens", "200");
     if (!localStorage.getItem("nickname")) localStorage.setItem("nickname", "");
     if (!localStorage.getItem("theme")) localStorage.setItem("theme", "dark");
     if (!localStorage.getItem("referralCode")) localStorage.setItem("referralCode", "");
     if (!localStorage.getItem("referredBy")) localStorage.setItem("referredBy", "false");
     if (!localStorage.getItem("lastLoginDate")) localStorage.setItem("lastLoginDate", "");
-
     const tokenDisplay = document.getElementById("token-display");
     const nicknameInput = document.getElementById("nickname-input");
     const nicknameDisplay = document.getElementById("nickname-display");
@@ -989,10 +1003,8 @@
     const modalConfirmBtn = document.getElementById("modalConfirmBtn");
     const modalCancelBtn = document.getElementById("modalCancelBtn");
     const modalOkBtn = document.getElementById("modalOkBtn");
-
     const referralCodeInput = document.getElementById("referral-code-input");
     const referralCodeDisplay = document.getElementById("referral-code-display");
-
     const avatarDisplay = document.getElementById("avatar-display");
     const customizeAvatarBtn = document.getElementById("customize-avatar-btn");
     const avatarModal = document.getElementById("avatarModal");
@@ -1005,15 +1017,11 @@
     const avatarClearBtn = document.getElementById("avatar-clear-btn");
     const saveAvatarBtn = document.getElementById("save-avatar-btn");
     const closeAvatarModalBtn = document.getElementById("close-avatar-modal-btn");
-
     const toggleThemeBtn = document.getElementById("toggle-theme-btn");
-
     const DAILY_BONUS_AMOUNT = 50;
-
     let isDrawing = false;
     let currentBrushColor = avatarColorPicker.value;
     let currentBrushSize = parseInt(avatarBrushSize.value);
-
     const myGamesSection = document.getElementById("my-games");
     const publishGameBtn = document.getElementById("publish-game-btn");
     const promptModal = document.getElementById("promptModal");
@@ -1023,8 +1031,6 @@
     const promptDescriptionInput = document.getElementById("promptDescriptionInput");
     const promptSaveBtn = document.getElementById("promptSaveBtn");
     const promptCancelBtn = document.getElementById("promptCancelBtn");
-
-
     function showAlert(message, title = "Notification") {
       modalTitle.textContent = title;
       modalMessage.textContent = message;
@@ -1039,7 +1045,6 @@
         };
       });
     }
-
     function showConfirm(message, title = "Confirmation") {
       modalTitle.textContent = title;
       modalMessage.textContent = message;
@@ -1058,7 +1063,6 @@
         };
       });
     }
-
     function showPrompt(title, message, input1Label, input2Label) {
       promptModalTitle.textContent = title;
       promptModalMessage.textContent = message;
@@ -1066,10 +1070,8 @@
       document.getElementById('promptInput2Label').textContent = input2Label;
       promptTitleInput.value = '';
       promptDescriptionInput.value = '';
-      promptModal.style.display = 'flex'; // Explicitly set display to flex
       promptModal.classList.add('show');
       console.log("Prompt modal should be visible now.");
-
       return new Promise(resolve => {
         promptSaveBtn.onclick = () => {
           console.log("Save button clicked in prompt.");
@@ -1078,7 +1080,6 @@
           if (titleValue && descriptionValue) {
             console.log("Title and description are valid.");
             promptModal.classList.remove('show');
-            promptModal.style.display = 'none'; // Hide it explicitly
             resolve({ title: titleValue, description: descriptionValue });
           } else {
             console.log("Title or description missing, showing alert.");
@@ -1088,30 +1089,24 @@
         promptCancelBtn.onclick = () => {
           console.log("Cancel button clicked in prompt.");
           promptModal.classList.remove('show');
-          promptModal.style.display = 'none'; // Hide it explicitly
           resolve(null);
         };
       });
     }
-
     function updateTokenDisplay() {
       tokenDisplay.textContent = `Tokens: ${localStorage.getItem("tokens")}`;
     }
-
     function updateNicknameDisplay() {
       const nickname = localStorage.getItem("nickname");
       nicknameDisplay.textContent = nickname ? `Welcome, ${nickname}!` : 'Guest';
     }
-
     function updateReferralDisplay() {
       const referralCode = localStorage.getItem("referralCode");
       referralCodeDisplay.textContent = `Your Code: ${referralCode}`;
     }
-
     function generateUniqueId() {
       return Math.random().toString(36).substring(2, 12).toUpperCase();
     }
-
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
       let newTheme;
@@ -1122,21 +1117,17 @@
       localStorage.setItem("theme", newTheme);
       applyTheme();
     }
-
     function applyTheme() {
       const theme = localStorage.getItem("theme");
       document.documentElement.setAttribute("data-theme", theme);
     }
-
     async function saveNickname() {
       const newNickname = nicknameInput.value.trim();
       const enteredReferralCode = referralCodeInput.value.trim().toUpperCase();
-
       if (newNickname) {
         localStorage.setItem("nickname", newNickname);
         updateNicknameDisplay();
         nicknameInput.classList.remove('error');
-
         if (enteredReferralCode && localStorage.getItem("referredBy") === "false" && enteredReferralCode !== localStorage.getItem("referralCode")) {
           let currentTokens = parseInt(localStorage.getItem("tokens"));
           currentTokens += 100;
@@ -1153,7 +1144,6 @@
         await showAlert("Please enter a nickname.", "Input Required");
       }
     }
-
     async function clearProgress() {
       const confirmed = await showConfirm("Are you sure you want to clear ALL your progress? This cannot be undone.", "Clear Progress");
       if (confirmed) {
@@ -1161,7 +1151,6 @@
         location.reload();
       }
     }
-
     function generateIframeContent() {
       return `
         <!DOCTYPE html>
@@ -1179,7 +1168,6 @@
                 const ctx = canvas.getContext("2d");
                 let sprite = { x: 200, y: 200, angle: 0, message: "" };
                 let script = [];
-
                 function drawSprite() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.save();
@@ -1188,7 +1176,6 @@
                     ctx.fillStyle = "#E63946";
                     ctx.fillRect(-10, -10, 20, 20);
                     ctx.restore();
-
                     if (sprite.message) {
                         ctx.fillStyle = "black";
                         ctx.fillRect(sprite.x - 30, sprite.y - 40, 60, 20);
@@ -1197,7 +1184,6 @@
                         ctx.fillText(sprite.message, sprite.x - 25, sprite.y - 25);
                     }
                 }
-
                 async function runAction(action) {
                     if (action === "move") sprite.x += 10;
                     if (action === "wait") await new Promise(r => setTimeout(r, 1000));
@@ -1211,7 +1197,6 @@
                     }
                     drawSprite();
                 }
-
                 async function runScript() {
                     let repeatMode = false;
                     let repeatStack = [];
@@ -1234,7 +1219,6 @@
                         }
                     }
                 }
-
                 window.addEventListener('message', (event) => {
                     if (event.data.type === 'gameScript') {
                         try {
@@ -1248,7 +1232,6 @@
                         }
                     }
                 });
-
                 window.onload = () => {
                     drawSprite();
                     window.parent.postMessage({ type: 'iframeReady' }, '*');
@@ -1258,35 +1241,28 @@
         </html>
       `;
     }
-
     function playGame(url) {
       const gamePlayer = document.getElementById("game-player");
       const gameIframe = document.getElementById("game-iframe");
-
       if (url.startsWith("localGame://")) {
         const gameId = url.replace("localGame://", "");
         const userGames = JSON.parse(localStorage.getItem("userGames") || "[]");
         const gameToLoad = userGames.find(game => game.id === gameId);
-
         if (gameToLoad && gameToLoad.script) {
           gameIframe.src = 'about:blank';
-
           const handleIframeReady = (event) => {
             if (event.source === gameIframe.contentWindow && event.data.type === 'iframeReady') {
               gameIframe.contentWindow.postMessage({ type: 'gameScript', script: gameToLoad.script }, '*');
               window.removeEventListener('message', handleIframeReady);
             }
           };
-
           window.addEventListener('message', handleIframeReady);
-
           gameIframe.onload = () => {
             const iframeDoc = gameIframe.contentDocument || gameIframe.contentWindow.document;
             iframeDoc.open();
             iframeDoc.write(generateIframeContent());
             iframeDoc.close();
           };
-
         } else {
           showAlert("Game not found or script is missing!", "Error Loading Game");
           return;
@@ -1298,7 +1274,6 @@
       gamePlayer.style.display = "flex";
       document.body.style.overflow = 'hidden';
     }
-
     function exitGame() {
       const gamePlayer = document.getElementById("game-player");
       const gameIframe = document.getElementById("game-iframe");
@@ -1306,11 +1281,9 @@
       gamePlayer.style.display = "none";
       document.body.style.overflow = 'auto';
     }
-
     function checkDailyBonus() {
       const lastLoginDate = localStorage.getItem("lastLoginDate");
       const today = new Date().toDateString();
-
       if (lastLoginDate !== today) {
         let currentTokens = parseInt(localStorage.getItem("tokens"));
         currentTokens += DAILY_BONUS_AMOUNT;
@@ -1320,7 +1293,6 @@
         showAlert(`Daily login bonus! +${DAILY_BONUS_AMOUNT} Tokens!`, "Bonus Claimed!");
       }
     }
-
     function loadAvatar() {
       const savedAvatar = localStorage.getItem("userAvatar");
       if (savedAvatar) {
@@ -1329,7 +1301,6 @@
         avatarDisplay.src = "https://placehold.co/30x30/8C52FF/FFFFFF?text=AV";
       }
     }
-
     function getCanvasCoordinates(e) {
       const rect = avatarCanvas.getBoundingClientRect();
       let clientX, clientY;
@@ -1345,14 +1316,12 @@
         offsetY: clientY - rect.top
       };
     }
-
     function startDrawing(e) {
       isDrawing = true;
       const { offsetX, offsetY } = getCanvasCoordinates(e);
       ctx.beginPath();
       ctx.moveTo(offsetX, offsetY);
     }
-
     function draw(e) {
       if (!isDrawing) return;
       const { offsetX, offsetY } = getCanvasCoordinates(e);
@@ -1362,21 +1331,17 @@
       ctx.lineTo(offsetX, offsetY);
       ctx.stroke();
     }
-
     function stopDrawing() {
       isDrawing = false;
       ctx.closePath();
     }
-
     const gameCanvasBuilder = document.getElementById("gameCanvasBuilder");
     const builderCtx = gameCanvasBuilder.getContext("2d");
     let sprite = { x: 200, y: 200, angle: 0, message: "" };
     let script = [];
-
     const scriptOutput = document.getElementById("script-output");
     const blockArea = document.getElementById("block-area");
     const uploadInputBuilder = document.getElementById("uploadInputBuilder");
-
     function drawSprite() {
       builderCtx.clearRect(0, 0, gameCanvasBuilder.width, gameCanvasBuilder.height);
       builderCtx.save();
@@ -1385,7 +1350,6 @@
       builderCtx.fillStyle = "#E63946";
       builderCtx.fillRect(-10, -10, 20, 20);
       builderCtx.restore();
-
       if (sprite.message) {
         builderCtx.fillStyle = "black";
         builderCtx.fillRect(sprite.x - 30, sprite.y - 40, 60, 20);
@@ -1394,20 +1358,17 @@
         builderCtx.fillText(sprite.message, sprite.x - 25, sprite.y - 25);
       }
     }
-
     async function runScript() {
       let repeatMode = false;
       let repeatStack = [];
-
       for (let action of script) {
         if (repeatMode) {
           repeatStack.push(action);
         }
-
         if (action === "repeat") {
           repeatMode = !repeatMode;
           if (!repeatMode) {
-            for (let i = 0; i < 3; i++) {
+                                for (let i = 0; i < 3; i++) {
               for (let act of repeatStack) {
                 await runAction(act);
               }
@@ -1419,7 +1380,6 @@
         }
       }
     }
-
     async function runAction(action) {
       if (action === "move") sprite.x += 10;
       if (action === "wait") await new Promise(r => setTimeout(r, 1000));
@@ -1433,7 +1393,6 @@
       }
       drawSprite();
     }
-
     function downloadGameScript() {
       const blob = new Blob([JSON.stringify(script)], { type: "application/json" });
       const a = document.createElement("a");
@@ -1442,7 +1401,6 @@
       a.click();
       showAlert("Game script downloaded as mygame.taygame!", "Download Complete");
     }
-
     function uploadGameScript() {
       const file = uploadInputBuilder.files[0];
       if (!file) return;
@@ -1458,7 +1416,6 @@
       };
       reader.readAsText(file);
     }
-
     async function publishGame() {
       console.log("publishGame function started.");
       if (script.length === 0) {
@@ -1466,10 +1423,8 @@
           showAlert("Your game script is empty! Add some blocks first.", "Cannot Publish");
           return;
       }
-
       const gameDetails = await showPrompt("Publish Your Game", "Enter a title and description for your game:", "Game Title", "Game Description");
       console.log("showPrompt resolved. gameDetails:", gameDetails);
-
       if (gameDetails) {
           console.log("gameDetails is valid, proceeding to save.");
           const gameId = generateUniqueId();
@@ -1481,23 +1436,19 @@
               script: JSON.stringify(script),
               url: `localGame://${gameId}`
           };
-
           let userGames = JSON.parse(localStorage.getItem("userGames") || "[]");
           userGames.push(newGame);
           localStorage.setItem("userGames", JSON.stringify(userGames));
           console.log("Game saved to localStorage.");
-
           renderUserGames();
           showAlert("Your game has been published!", "Game Published!");
       } else {
           console.log("Game publishing cancelled or invalid details.");
       }
     }
-
     function renderUserGames() {
         const userGames = JSON.parse(localStorage.getItem("userGames") || "[]");
         myGamesSection.innerHTML = '';
-
         if (userGames.length > 0) {
             const heading = document.createElement('h2');
             heading.textContent = 'My Published Games';
@@ -1509,7 +1460,6 @@
             heading.style.marginBottom = '25px';
             heading.style.textShadow = '0 0 10px rgba(140, 82, 255, 0.3)';
             myGamesSection.appendChild(heading);
-
             userGames.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
@@ -1524,27 +1474,21 @@
         }
         attachPlayGameListeners();
     }
-
     function attachPlayGameListeners() {
       document.querySelectorAll('.play-game-btn').forEach(button => {
         button.removeEventListener('click', handlePlayGameClick);
         button.addEventListener('click', handlePlayGameClick);
       });
     }
-
     function handlePlayGameClick(event) {
       const gameUrl = event.target.dataset.gameUrl;
       playGame(gameUrl);
     }
-
-
     document.addEventListener('DOMContentLoaded', () => {
       console.log("Main script: DOMContentLoaded fired.");
-
       if (!localStorage.getItem("referralCode")) {
         localStorage.setItem("referralCode", generateUniqueId());
       }
-
       nicknameInput.value = localStorage.getItem("nickname");
       updateNicknameDisplay();
       updateTokenDisplay();
@@ -1553,13 +1497,11 @@
       loadAvatar();
       checkDailyBonus();
       renderUserGames();
-
       saveNicknameBtn.onclick = saveNickname;
       clearProgressBtn.onclick = clearProgress;
       joinDiscordBtn.onclick = () => {
         window.open("https://discord.gg/WujvQjVneM", "_blank");
       };
-
       nicknameInput.addEventListener('input', () => {
         if (nicknameInput.value.trim() !== '') {
           nicknameInput.classList.remove('error');
@@ -1568,11 +1510,8 @@
       referralCodeInput.addEventListener('input', () => {
         referralCodeInput.value = referralCodeInput.value.toUpperCase();
       });
-
       customModal.style.display = 'none';
-      avatarModal.style.display = 'none';
       promptModal.style.display = 'none';
-
       customizeAvatarBtn.onclick = () => {
         avatarModal.classList.add('show');
         if (localStorage.getItem("userAvatar")) {
@@ -1588,11 +1527,9 @@
           ctx.fillRect(0, 0, avatarCanvas.width, avatarCanvas.height);
         }
       };
-
       closeAvatarModalBtn.onclick = () => {
         avatarModal.classList.remove('show');
       };
-
       saveAvatarBtn.onclick = () => {
         const dataURL = avatarCanvas.toDataURL("image/png");
         localStorage.setItem("userAvatar", dataURL);
@@ -1600,51 +1537,41 @@
         avatarModal.classList.remove('show');
         showAlert("Avatar saved successfully!", "Avatar Updated");
       };
-
       avatarColorPicker.oninput = (e) => {
         currentBrushColor = e.target.value;
         ctx.globalCompositeOperation = 'source-over';
       };
-
       avatarBrushSize.oninput = (e) => {
         currentBrushSize = parseInt(e.target.value);
         brushSizeValue.textContent = `${currentBrushSize}px`;
       };
-
       avatarEraserBtn.onclick = () => {
         ctx.globalCompositeOperation = 'destination-out';
         currentBrushColor = '#000000';
       };
-
       avatarClearBtn.onclick = () => {
         ctx.clearRect(0, 0, avatarCanvas.width, avatarCanvas.height);
         ctx.globalCompositeOperation = 'source-over';
         currentBrushColor = avatarColorPicker.value;
       };
-
       avatarCanvas.addEventListener('mousedown', startDrawing);
       avatarCanvas.addEventListener('mousemove', draw);
       avatarCanvas.addEventListener('mouseup', stopDrawing);
       avatarCanvas.addEventListener('mouseout', stopDrawing);
-
       avatarCanvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDrawing(e); }, { passive: false });
       avatarCanvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); }, { passive: false });
       avatarCanvas.addEventListener('touchend', stopDrawing);
-
       toggleThemeBtn.onclick = toggleTheme;
-
       window.addEventListener('message', (event) => {
         if (event.data === 'exitGame') {
           exitGame();
         }
       });
-
       document.querySelectorAll(".block").forEach(block => {
         block.addEventListener("dragstart", (e) => {
           e.dataTransfer.setData("text/plain", block.dataset.action);
         });
       });
-
       document.getElementById("sidebar-builder").addEventListener("dragover", e => e.preventDefault());
       document.getElementById("sidebar-builder").addEventListener("drop", e => {
         e.preventDefault();
@@ -1652,9 +1579,7 @@
         script.push(action);
         scriptOutput.textContent = JSON.stringify(script, null, 2);
       });
-
       publishGameBtn.onclick = publishGame;
-
       drawSprite();
     });
   </script>
